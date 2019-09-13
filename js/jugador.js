@@ -10,6 +10,9 @@ var Jugador = {
   alto: 30,
   velocidad: 10,
   vidas: 5,  
-  mover: function () {},
+  mover: function (x, y) {
+    this.x += x;
+    this.y += y;
+  },
   perdervida: function () {}
 }
