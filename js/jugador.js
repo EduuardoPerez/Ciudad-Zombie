@@ -14,5 +14,7 @@ var Jugador = {
     this.x += x;
     this.y += y;
   },
-  perdervida: function () {}
+  perderVidas: function (cantidadVidas) {
+    this.vidas -= cantidadVidas;
+  }
 }
