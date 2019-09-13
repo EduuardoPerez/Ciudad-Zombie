@@ -23,19 +23,19 @@ var Juego = {
     //Obstaculo(sprite, x, y, ancho, alto, potencia)
     new Obstaculo('imagenes/valla_horizontal.png', 120, 90, 30, 30, 1),
     new Obstaculo('imagenes/valla_horizontal.png', 150, 90, 30, 30, 1),
-    new Obstaculo('imagenes/auto_verde_abajo.png', 170, 250, 15, 30, 1),
+    new Obstaculo('imagenes/auto_verde_abajo.png', 170, 250, 15, 30, 2),
     new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_horizontal.png', 130, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 190, 470, 30, 30, 1),
     new Obstaculo('imagenes/bache.png', 90, 370, 30, 30, 1),
     new Obstaculo('imagenes/bache.png', 300, 450, 30, 30, 1),
-    new Obstaculo('imagenes/auto_verde_derecha.png', 400, 430, 30, 15, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 400, 430, 30, 15, 2),
     new Obstaculo('imagenes/valla_vertical.png', 490, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 490, 460, 30, 30, 1),
     new Obstaculo('imagenes/valla_horizontal.png', 510, 400, 30, 30, 1),
-    new Obstaculo('imagenes/bache.png', 700, 90, 30, 30, 1),
-    new Obstaculo('imagenes/bache.png', 500, 110, 30, 30, 1),
-    new Obstaculo('imagenes/auto_verde_derecha.png', 850, 430, 30, 15, 1),
+    new Obstaculo('imagenes/bache.png', 700, 70, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 500, 120, 30, 30, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 850, 430, 30, 15, 2),
     new Obstaculo('imagenes/bache.png', 820, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_horizontal.png', 760, 200, 30, 30, 1),
     new Obstaculo('imagenes/valla_horizontal.png', 790, 200, 30, 30, 1),
@@ -159,7 +159,6 @@ Juego.capturarMovimiento = function(tecla) {
 
   // Si se puede mover hacia esa posicion hay que hacer efectivo este movimiento
   if (this.chequearColisiones(movX + this.jugador.x, movY + this.jugador.y)) {
-
     this.jugador.mover(movX, movY);
   }
 };
@@ -190,6 +189,16 @@ Juego.dibujar = function() {
     var x = tamanio * i
     Dibujante.dibujarRectangulo('red', x, 0, tamanio, 8);
   }
+
+  // El dibujante dibuja la llegada para que el usuario sepa a donde llegar
+  Dibujante.dibujarRectangulo('black', 745, 560, 20, 10);
+  Dibujante.dibujarRectangulo('white', 765, 560, 20, 10);
+  Dibujante.dibujarRectangulo('black', 785, 560, 20, 10);
+  Dibujante.dibujarRectangulo('white', 805, 560, 20, 10);
+  Dibujante.dibujarRectangulo('black', 825, 560, 20, 10);
+  Dibujante.dibujarRectangulo('white', 845, 560, 20, 10);
+  Dibujante.dibujarRectangulo('black', 865, 560, 20, 10);
+  Dibujante.dibujarRectangulo('white', 885, 560, 20, 10);
 };
 
 
@@ -225,9 +234,7 @@ Juego.chequearColisiones = function(x, y) {
   var puedeMoverse = true
   this.obstaculos().forEach(function(obstaculo) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
-
-      /*COMPLETAR, obstaculo debe chocar al jugador*/
-
+      this.jugador.perderVidas(obstaculo.chocar());
       puedeMoverse = false
     }
   }, this)
