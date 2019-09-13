@@ -20,6 +20,25 @@ var Juego = {
   obstaculosCarretera: [
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
+    //Obstaculo(sprite, x, y, ancho, alto, potencia)
+    new Obstaculo('imagenes/valla_horizontal.png', 120, 90, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 150, 90, 30, 30, 1),
+    new Obstaculo('imagenes/auto_verde_abajo.png', 170, 250, 15, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 130, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 190, 470, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 90, 370, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 300, 450, 30, 30, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 400, 430, 30, 15, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 490, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 490, 460, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 510, 400, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 700, 90, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 500, 110, 30, 30, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 850, 430, 30, 15, 1),
+    new Obstaculo('imagenes/bache.png', 820, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 760, 200, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 790, 200, 30, 30, 1),
     new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1)
 
   ],
@@ -50,7 +69,7 @@ var Juego = {
 }
 
 /* Se cargan los recursos de las imagenes, para tener un facil acceso
-a ellos. No hace falta comprender esta parte. Pero si queres agregar tus propies
+a ellos. No hace falta comprender esta parte. Pero si queres agregar tus propias
 imagenes tendras que poner su ruta en la lista para que pueda ser precargada como
 todas las demas. */
 Juego.iniciarRecursos = function() {
@@ -200,7 +219,7 @@ Juego.calcularAtaques = function() {
 
 
 
-/* Aca se chequea si el jugador se peude mover a la posicion destino.
+/* Aca se chequea si el jugador se pueude mover a la posicion destino.
  Es decir, que no haya obstaculos que se interpongan. De ser asi, no podra moverse */
 Juego.chequearColisiones = function(x, y) {
   var puedeMoverse = true
