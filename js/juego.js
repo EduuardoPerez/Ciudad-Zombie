@@ -63,7 +63,14 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-
+    new ZombieCaminante('imagenes/zombie1.png',20, 500, 10, 10, 5, {desdeX: 0, hastaX: 577, desdeY: 0, hastaY: 961}),
+    new ZombieCaminante('imagenes/zombie2.png',200, 200, 10, 10, 37, {desdeX: 0, hastaX: 577, desdeY: 0, hastaY: 961}),
+    new ZombieCaminante('imagenes/zombie3.png',550, 150, 10, 10, 15, {desdeX: 0, hastaX: 577, desdeY: 0, hastaY: 961}),
+    new ZombieCaminante('imagenes/zombie4.png',650, 20, 10, 10, 20, {desdeX: 0, hastaX: 577, desdeY: 0, hastaY: 961}),
+    new ZombieCaminante('imagenes/zombie2.png',900, 300, 10, 10, 2, {desdeX: 0, hastaX: 577, desdeY: 0, hastaY: 961}),
+    new ZombieConductor('imagenes/tren_horizontal.png',400, 322, 90, 30, 15, {desdeX: 0, hastaX: 577, desdeY: 0, hastaY: 961}, 'h'),
+    new ZombieConductor('imagenes/tren_vertical.png',644, 0, 30, 90, 20, {desdeX: 0, hastaX: 577, desdeY: 0, hastaY: 961}, 'v'),
+    new ZombieConductor('imagenes/tren_vertical.png',678, 0, 30, 90, 2, {desdeX: 0, hastaX: 577, desdeY: 0, hastaY: 961}, 'v')
   ]
 
 }
@@ -177,6 +184,11 @@ Juego.dibujar = function() {
     Dibujante.dibujarEntidad(obstaculo);
   });
 
+  // Se recorren los enemigos del arreglo y se van pintando
+  this.enemigos.forEach(function(enemigo) {
+    Dibujante.dibujarEntidad(enemigo);
+  });
+
   // Se recorren los enemigos pintandolos
   this.enemigos.forEach(function(enemigo) {
     /* Completar */
@@ -234,7 +246,7 @@ Juego.chequearColisiones = function(x, y) {
   var puedeMoverse = true
   this.obstaculos().forEach(function(obstaculo) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
-      this.jugador.perderVidas(obstaculo.chocar());
+      obstaculo.chocar(this.jugador);
       puedeMoverse = false
     }
   }, this)
