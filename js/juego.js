@@ -63,14 +63,16 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
+    // Zombies caminantes
     new ZombieCaminante('imagenes/zombie1.png',20, 500, 10, 10, 1, {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 577}),
     new ZombieCaminante('imagenes/zombie2.png',200, 200, 10, 10, 2, {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 577}),
     new ZombieCaminante('imagenes/zombie3.png',550, 150, 10, 10, 3, {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 577}),
     new ZombieCaminante('imagenes/zombie4.png',650, 20, 10, 10, 1, {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 577}),
     new ZombieCaminante('imagenes/zombie2.png',900, 300, 10, 10, 2, {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 577}),
-    new ZombieConductor('imagenes/tren_horizontal.png',400, 322, 90, 30, 2, {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 577}, 'h'),
-    new ZombieConductor('imagenes/tren_vertical.png',644, 0, 30, 90, 1, {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 577}, 'v'),
-    new ZombieConductor('imagenes/tren_vertical.png',678, 0, 30, 90, 3, {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 577}, 'v')
+    // Zombies Conductores
+    new ZombieConductor('imagenes/tren_horizontal.png',400, 322, 90, 30, 2, {desdeX: 0, hastaX: 874, desdeY: 0, hastaY: 577}, 'h'),
+    new ZombieConductor('imagenes/tren_vertical.png',644, 0, 30, 90, 1, {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 490}, 'v'),
+    new ZombieConductor('imagenes/tren_vertical.png',678, 0, 30, 90, 3, {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 490}, 'v')
   ]
 
 }
@@ -226,11 +228,9 @@ se ven las colisiones con los obstaculos. En este caso sera con los zombies. */
 Juego.calcularAtaques = function() {
   this.enemigos.forEach(function(enemigo) {
     if (this.intersecan(enemigo, this.jugador, this.jugador.x, this.jugador.y)) {
-      /* Si el enemigo colisiona debe empezar su ataque
-      COMPLETAR */
+      enemigo.comenzarAtaque(this.jugador);
     } else {
-      /* Sino, debe dejar de atacar
-      COMPLETAR */
+      enemigo.dejarDeAtacar();
     }
   }, this);
 };

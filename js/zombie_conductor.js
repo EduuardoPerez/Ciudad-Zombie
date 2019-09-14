@@ -9,6 +9,9 @@ var ZombieConductor = function(sprite, x, y, ancho, alto, velocidad, rangoMov, d
   this.direccion = direccion;
 }
 
+ZombieConductor.prototype = Object.create(Enemigo.prototype);
+ZombieConductor.prototype.constructor = ZombieConductor;
+
 // Se mueve de manera horizontal o vertical según la direccion indicada al ser instaciado el ZombieConductor
 ZombieConductor.prototype.mover = function() {
   if (this.direccion==='h') {
@@ -27,4 +30,9 @@ ZombieConductor.prototype.mover = function() {
   if (this.direccion==='v' && (this.y < this.rangoMov.desdeY) || (this.y > this.rangoMov.hastaY)) {
     this.velocidad *= -1;
   }
+}
+
+// El ZombieConductor le restara 2 de vida al jugador
+ZombieConductor.prototype.atacar = function (jugador) {
+  jugador.vidas = 0;
 }
